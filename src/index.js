@@ -10,8 +10,6 @@ const setupserver=async()=>{
     app.use(bodyparser.urlencoded({extended:true}))
     app.listen(PORT,async()=>{
         console.log(`server started at ${PORT}`);
-        const repo=new CityRepositry();
-        repo.createCity({name: "bho pal"});
     });
 }
 setupserver();

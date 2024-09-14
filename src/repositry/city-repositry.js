@@ -9,7 +9,8 @@ class CityRepositry{
             return city
         }catch(error)
         {
-            throw{error};
+            console.log("something went wrong")
+            throw {error}
         }
     }
     async deleteCity(cityId)
@@ -19,10 +20,40 @@ class CityRepositry{
                 where:{
                 id:cityId
             }});
+            return true;
         }catch(error)
         {
-            throw{error};
+            console.log("something went wrong")
+            throw {error}
         }
     }
+    async updateCity(cityId,data)
+    {
+        try{
+            const city=await City.update(data,{
+                where:{
+                    id:cityId,
+                }
+            });
+            return city;
+        }catch(error)
+        {
+           console.log("something went wrong ")
+           throw {error}
+        }
+    }
+    async getCity(cityId)
+    {
+        try{
+            const city=await City.findbypk(cityId)
+            return city;
+        }
+        catch(error)
+        {
+           console.log("something went wrong")
+           throw {error}
+        }
+    }
+    
 }
 module.exports=CityRepositry;
