@@ -1,13 +1,12 @@
-const {CityRepositry}=require('../repositry/city-repositry');
-
+const CityRepository =require('../repositry/city-repositry');
 class CityService{
     constructor(){
-        this.CityRepositry=new CityRepositry();
+        this.cityRepositry= new CityRepository();
     }
     async createCity(data)
     {
         try{
-            const city=await this.CityRepositry.createCity(data);
+            const city=await this.cityRepositry.createCity(data);
             return city;
         }catch(error){
             console.log("something went wrong");
@@ -17,7 +16,7 @@ class CityService{
     async deleteCity(cityId)
     {
         try{
-            const response=await this.CityRepositry.deleteCity(cityId);
+            const response=await this.cityRepositry.deleteCity(cityId);
             return response;
         }catch(error){
             console.log("something went wrong");
@@ -27,7 +26,7 @@ class CityService{
     async getCity(cityId)
     {
         try{
-             const city=await this.CityRepositry.getCity(cityId);
+             const city=await this.cityRepositry.getCity(cityId);
              return city
         }catch(error){
             console.log("something went wrong");
@@ -37,7 +36,7 @@ class CityService{
     async updateCity(cityId,data)
     {
         try{
-             const city=await this.CityRepositry.updateCity(cityId,data);
+             const city=await this.cityRepositry.updateCity(cityId,data);
              return city;
         }catch(error){
             console.log("something went wrong");
@@ -45,3 +44,4 @@ class CityService{
         }
     }
 }
+module.exports=CityService;
