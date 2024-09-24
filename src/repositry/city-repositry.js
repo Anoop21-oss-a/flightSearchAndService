@@ -45,12 +45,27 @@ class CityRepository{
     async getCity(cityId)
     {
         try{
-            const city=await City.findbypk(cityId)
+            const city=await City.findByPk(cityId, {
+                attributes: ['id', 'name', 'createdAt', 'updatedAt']  // Only fetch valid columns
+            });
             return city;
         }
         catch(error)
         {
            console.log("something went wrong")
+           throw {error}
+        }
+    }
+    async getAllcities()
+    {
+        try{
+              const cities=await City.findAll({
+                attributes: ['id', 'name','createdAt', 'updatedAt'],
+              });
+              return cities;
+        } catch(error)
+        {
+            console.log("something went wrong")
            throw {error}
         }
     }

@@ -26,7 +26,7 @@ const { CityService }=require('../services/index');
     //delete->city/:id
   const destroy=async(req,res)=>{
         try{
-            const response=await cityService.deleteCity(req.param.id)
+            const response=await cityService.deleteCity(req.params.id)
           return res.status(200).json({
             data:response,
             success:true,
@@ -48,14 +48,13 @@ const { CityService }=require('../services/index');
     //get ->city/:id
     const get=async(req,res)=>{
         try{
-            const response=await cityService.getCity(req.body)
-          return res.status(201).json({
+            const response=await cityService.getCity(req.params.id)
+          return res.status(200).json({
             data:response,
             success:true,
             message:'successfully fetch a city',
             err:{}
           });
-
 
         }catch(error)
         {
@@ -65,15 +64,15 @@ const { CityService }=require('../services/index');
              success:false,
              message:'not able to get city',
              err:error
-            })
+            });
         }
     }
 
     //patch -> city/:id ->req.body
     const update=async(req,res)=>{
         try{
-            const response=await cityService.updateCity(req.param.id,req.body)
-          return res.status(201).json({
+            const response=await cityService.updateCity(req.params.id,req.body)
+          return res.status(200).json({
             data:response,
             success:true,
             message:'successfully updated city',
@@ -90,10 +89,32 @@ const { CityService }=require('../services/index');
             })
         }
     }
+    const getAll=async(req,res)=>{
+      try{
+           const cities= await cityService.getAllcities();
+           return res.status(200).json({
+            data:cities,
+            success:true,
+            message:'successfully fetched cities ',
+            err:{}
+          });
+      }
+      catch(error)
+      {
+        console.log(error);
+        return res.status(500).json({
+         data:{},
+         success:false,
+         message:'not able to get all cities',
+         err:error
+        });
+      }
+    }
  
  module.exports={
   create,
   destroy,
   get,
   update,
+  getAll,
  }
