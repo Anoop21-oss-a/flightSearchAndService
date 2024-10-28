@@ -91,7 +91,7 @@ const { CityService }=require('../services/index');
     }
     const getAll=async(req,res)=>{
       try{
-           const cities= await cityService.getAllcities();
+           const cities= await cityService.getAllcities(req.query);
            return res.status(200).json({
             data:cities,
             success:true,

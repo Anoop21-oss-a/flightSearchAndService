@@ -43,10 +43,10 @@ class CityService{
             throw {error};
         }
     }
-    async getAllcities()
+    async getAllcities(filter)
     {
         try{
-            const cities=await this.cityRepositry.getAllcities();
+            const cities=await this.cityRepositry.getAllcities({name :filter.name});
             return cities;
         } catch(error)
         {
