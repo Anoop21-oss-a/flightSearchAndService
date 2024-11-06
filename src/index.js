@@ -17,6 +17,7 @@ const setupserver=async()=>{
        {
         db.sequelize.sync({alter:true});
        }
+       //const airports=await City.getAirports()
     });
    
 }
